@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="320.0" minWidth="480.0" prefHeight="320" prefWidth="480" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="sample.Controller">
+    <children>
+        <HBox alignment="CENTER_LEFT">
+            <children>
+                <Label fx:id="uzorak" text="Uzorak:">
+                    <HBox.margin>
+                        <Insets right="2.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="textBox" prefWidth="160.0">
+                    <HBox.margin>
+                        <Insets  bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                </TextField>
+                <Button fx:id="traziBtn" mnemonicParsing="false" text="Trazi" onAction="#onTrazi">
+                    <HBox.margin>
+                        <Insets left="4.0" right="4.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+            </padding>
+        </HBox>
+        <ListView fx:id="list" maxHeight="Infinity" maxWidth="Infinity" VBox.vgrow="ALWAYS" />
+    </children>
+</VBox>
