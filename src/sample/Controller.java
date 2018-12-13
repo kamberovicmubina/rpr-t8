@@ -62,6 +62,10 @@ public class Controller {
         thread.stop();
     }
 
+    public void onPosalji (ActionEvent event) {
+
+    }
+
     public void trazi (File file, String podstring) throws Exception {
         for (File f : file.listFiles()) {
             if (f.isFile()) { // ako je file

@@ -23,7 +23,7 @@
                      </HBox.margin>
                 </TextField>
             <Button fx:id="traziBtn" mnemonicParsing="false" onAction="#onTrazi" text="Trazi" />
-                <Button fx:id="prekiniBtn" mnemonicParsing="false" onAction="#onPrekini" text="Prekini">
+                <Button fx:id="prekiniBtn" styleClass="onemogucenoDugme" mnemonicParsing="false" onAction="#onPrekini" text="Prekini">
                     <HBox.margin>
                         <Insets left="4.0" right="4.0" />
                     </HBox.margin>
