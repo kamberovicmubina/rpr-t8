@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class Controller {
     @FXML
-    public ListView list;
+    public ListView<String> list;
     @FXML
     public Label uzorak;
     @FXML
@@ -24,23 +25,43 @@ public class Controller {
     @FXML
     public Button traziBtn;
 
-    private ObservableList<File> lista = FXCollections.observableArrayList();
-
     public void initialize (URL url, ResourceBundle rb) {
-        list.setItems(lista);
-        list.getItems().addListener((ListChangeListener) (change) ->
-                list.scrollTo(list.getItems().size()-1)
-        );
+    }
+
+    public class Pretraga implements Runnable {
+        @Override
+        public void run () {
+            String podstring = textBox.getText();
+            try {
+                trazi(new File ("C:\\Users\\User\\Desktop"), podstring);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     public void onTrazi(ActionEvent event) {
-        Pretraga pretraga = new Pretraga(this);
-        Thread thread = new Thread(pretraga);
+        list.getSelectionModel().clearSelection();
+        list.getItems().clear();
+        Pretraga pretraga = new Pretraga ();
+        Thread thread = new Thread (pretraga);
         thread.start();
     }
 
-    public ObservableList<File> fileList() {
-        return lista;
+    public void trazi (File file, String podstring) throws Exception {
+        for (File f : file.listFiles()) {
+            if (f.isFile()) { // ako je file
+                if (f.getName().contains(podstring)) { // provjeravamo mu naziv
+                    Platform.runLater(() -> {
+                                list.getItems().add(f.getPath());
+                            }
+                    );
+
+                }
+            } else { // ako je folder
+                trazi(f, podstring);
+            }
+        }
     }
 }
