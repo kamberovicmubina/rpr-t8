@@ -8,9 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-
-<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="320.0" minWidth="480.0" prefHeight="320" prefWidth="480" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="sample.Controller">
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="320.0" minWidth="480.0" prefHeight="320" prefWidth="480" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <HBox alignment="CENTER_LEFT">
             <children>
@@ -21,10 +19,11 @@
                 </Label>
                 <TextField fx:id="textBox" prefWidth="160.0">
                     <HBox.margin>
-                        <Insets  bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </HBox.margin>
                 </TextField>
-                <Button fx:id="traziBtn" mnemonicParsing="false" text="Trazi" onAction="#onTrazi">
+            <Button fx:id="traziBtn" mnemonicParsing="false" onAction="#onTrazi" text="Trazi" />
+                <Button fx:id="prekiniBtn" mnemonicParsing="false" onAction="#onPrekini" text="Prekini">
                     <HBox.margin>
                         <Insets left="4.0" right="4.0" />
                     </HBox.margin>

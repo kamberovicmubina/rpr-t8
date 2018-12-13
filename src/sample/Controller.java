@@ -24,8 +24,12 @@ public class Controller {
     public TextField textBox;
     @FXML
     public Button traziBtn;
+    @FXML
+    public Button prekiniBtn;
+    Thread thread;
 
     public void initialize (URL url, ResourceBundle rb) {
+        prekiniBtn.setDisable(true);
     }
 
     public class Pretraga implements Runnable {
@@ -40,19 +44,33 @@ public class Controller {
         }
     }
 
+
     @FXML
     public void onTrazi(ActionEvent event) {
+        traziBtn.setDisable(true);
+        prekiniBtn.setDisable(false);
         list.getSelectionModel().clearSelection();
         list.getItems().clear();
         Pretraga pretraga = new Pretraga ();
-        Thread thread = new Thread (pretraga);
+        thread = new Thread (pretraga);
         thread.start();
+    }
+
+    public void onPrekini (ActionEvent actionEvent) {
+        traziBtn.setDisable(false);
+        prekiniBtn.setDisable(true);
+        thread.stop();
     }
 
     public void trazi (File file, String podstring) throws Exception {
         for (File f : file.listFiles()) {
             if (f.isFile()) { // ako je file
                 if (f.getName().contains(podstring)) { // provjeravamo mu naziv
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Platform.runLater(() -> {
                                 list.getItems().add(f.getPath());
                             }
